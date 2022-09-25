@@ -1,5 +1,5 @@
 
->>> body {
+body {
     margin: 0;
 }
 
@@ -10,13 +10,11 @@ main {
 .user-avatar {
   max-height: 35px;
   border-radius: 4px;
-
 }
 
 .toolbar-tools {
   display: flex;
 }
-
 
 .filler {
   flex: 1 1 auto;
@@ -31,7 +29,6 @@ main {
 .menu-item.menu-item-active {
   text-decoration: underline;
 }
-
 
 .profile-picture {
   max-height: 40px;

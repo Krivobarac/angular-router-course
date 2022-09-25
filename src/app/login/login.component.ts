@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
-
-
 import {Router} from '@angular/router';
 import {AuthStore} from '../services/auth.store';
 
@@ -10,7 +8,7 @@ import {AuthStore} from '../services/auth.store';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   form: UntypedFormGroup;
 
@@ -23,11 +21,6 @@ export class LoginComponent implements OnInit {
       email: ['test@angular-university.io', [Validators.required]],
       password: ['test', [Validators.required]]
     });
-
-  }
-
-  ngOnInit() {
-
   }
 
   login() {
@@ -41,9 +34,6 @@ export class LoginComponent implements OnInit {
                 alert("Login failed!");
             }
         );
-
-
-
   }
 
 }

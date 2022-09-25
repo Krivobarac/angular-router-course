@@ -5,38 +5,28 @@ import {CoursesService} from "../services/courses.service";
 import {map} from "rxjs/operators";
 import {LoadingService} from "../../shared/loading/loading.service";
 
-
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
   beginnerCourses$: Observable<Course[]>;
-
   advancedCourses$: Observable<Course[]>;
 
   constructor(
     private courses: CoursesService,
-    private loading: LoadingService) {
-
-  }
+    private loading: LoadingService
+  ) {  }
 
   ngOnInit() {
-
       this.reloadCourses();
-
   }
 
   reloadCourses() {
-
     const courses$ = this.courses.loadAllCourses();
-
-      this.beginnerCourses$ = this.filterByCategory(courses$, "BEGINNER");
-
-      this.advancedCourses$ = this.filterByCategory(courses$, "ADVANCED");
-
+    this.beginnerCourses$ = this.filterByCategory(courses$, "BEGINNER");
+    this.advancedCourses$ = this.filterByCategory(courses$, "ADVANCED");
   }
 
   filterByCategory(courses$: Observable<Course[]>, category:string) {
@@ -45,7 +35,4 @@ export class HomeComponent implements OnInit {
         map(courses => courses.filter(course => course.category == category).sort(sortCoursesBySeqNo))
       );
   }
-
 }
-
-

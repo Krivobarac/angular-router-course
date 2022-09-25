@@ -1,4 +1,4 @@
-import {Inject, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {User} from '../model/user';
 import {map, shareReplay, tap} from 'rxjs/operators';
@@ -13,15 +13,13 @@ export class AuthStore {
 
     private subject = new BehaviorSubject<User>(null);
 
-    user$ : Observable<User> = this.subject.asObservable();
+    user$: Observable<User> = this.subject.asObservable();
 
     isLoggedIn$ : Observable<boolean>;
     isLoggedOut$ : Observable<boolean>;
 
     constructor(private http: HttpClient) {
-
         this.isLoggedIn$ = this.user$.pipe(map(user => !!user));
-
         this.isLoggedOut$ = this.isLoggedIn$.pipe(map(loggedIn => !loggedIn));
 
         const user = localStorage.getItem(AUTH_DATA);
@@ -29,7 +27,6 @@ export class AuthStore {
         if (user) {
             this.subject.next(JSON.parse(user));
         }
-
     }
 
     login(email:string, password:string): Observable<User> {
@@ -47,6 +44,4 @@ export class AuthStore {
         this.subject.next(null);
         localStorage.removeItem(AUTH_DATA);
     }
-
-
 }
